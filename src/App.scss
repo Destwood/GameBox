@@ -1,9 +1,16 @@
 .App {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-    135deg,
-    rgba(62, 103, 255, 1) 18%,
-    rgba(250, 125, 244, 1) 100%
-  );
+  background: #000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: none;
+}
+
+.img {
+  pointer-events: none;
+  user-select: none;
+  height: 50%;
 }

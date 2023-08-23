@@ -1,0 +1,26 @@
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: #fff;
+}
+
+.outline {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #ffffff9d;
+}
+
+.dot,
+.outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.outline {
+  transition: 0.1s ease-in-out;
+}
