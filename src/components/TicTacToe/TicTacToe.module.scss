@@ -1,0 +1,29 @@
+.wrapper {
+}
+table {
+  user-select: none;
+  border: 2px solid #fff;
+  margin: 0;
+  padding: 0;
+  tr {
+    border: 2px solid #fff;
+    margin: 0;
+    padding: 0;
+    td {
+      display: inline-block;
+      width: 3rem;
+      height: 3rem;
+      border: 2px solid #fff;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.blue {
+  background-color: blue;
+}
+
+.red {
+  background-color: red;
+}

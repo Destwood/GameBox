@@ -13,8 +13,6 @@
 .dot,
 .outline {
   position: fixed;
-  top: 0;
-  left: 0;
   transform: translate(-50%, -50%);
   z-index: 1;
   pointer-events: none;
