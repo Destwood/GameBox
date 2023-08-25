@@ -2,152 +2,100 @@ import React, { useState } from "react";
 import style from "./TicTacToe.module.scss";
 
 function TicTacToe() {
-  const start = [
-    [``, ``, ``],
-    [``, ``, ``],
-    [``, ``, ``],
-  ];
+  const start = [``, ``, ``, ``, ``, ``, ``, ``, ``];
   const [game, setGame] = useState(start);
-  const [score, setScore] = useState([0, 0]);
+  const [score, setScore] = useState({ X: 0, O: 0 });
   const [player, setPlayer] = useState("X");
-  const [winner, setWinner] = useState(); // here
+  const [winner, setWinner] = useState();
 
-  const Turn = (first, second) => {
-    if (winner === "X") {
-      setScore([(score[0] += 1)]);
-      return; // here
-    }
-    if (winner === "O") {
-      setScore([(score[1] += 1)]);
-      return; // here
-    }
-    if (game[first][second] === ``) {
-      const updatedGame = [...game];
-      updatedGame[first][second] = player;
-
-      setGame(updatedGame);
-      if (
-        // horizontal check
-        (game[0][0] !== `` &&
-          game[0][0] === game[0][1] &&
-          game[0][1] === game[0][2]) ||
-        (game[1][0] !== `` &&
-          game[1][0] === game[1][1] &&
-          game[1][1] === game[1][2]) ||
-        (game[2][0] !== `` &&
-          game[2][0] === game[2][1] &&
-          game[2][1] === game[2][2]) ||
-        //   vertical check
-        (game[0][0] !== `` &&
-          game[0][0] === game[1][0] &&
-          game[1][0] === game[2][0]) ||
-        (game[0][1] !== `` &&
-          game[0][1] === game[1][1] &&
-          game[1][1] === game[2][1]) ||
-        (game[0][2] !== `` &&
-          game[0][2] === game[1][2] &&
-          game[1][2] === game[2][2]) ||
-        //   diagonal check
-        (game[1][1] !== `` &&
-          game[0][0] === game[1][1] &&
-          game[1][1] === game[2][2]) ||
-        (game[1][1] !== `` &&
-          game[0][2] === game[1][1] &&
-          game[1][1] === game[2][0])
-      ) {
-        setWinner(player);
-        console.log(`${player} winner`);
+  const checkWinner = (game) => {
+    const winningCombinations = [
+      // Horizontal
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      // Vertical
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      // Diagonal
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (const combination of winningCombinations) {
+      const [a, b, c] = combination;
+      if (game[a] && game[a] === game[b] && game[b] === game[c]) {
+        return game[a];
       }
-      player === "X" ? setPlayer("O") : setPlayer("X"); // here
     }
+    return null;
   };
 
+  const Turn = (index) => {
+    if (winner === "X") {
+      setScore([score[0] + 1]);
+      return;
+    }
+    if (winner === "O") {
+      setScore([score[1] + 1]);
+      return;
+    }
+    if (game[index] === "") {
+      const updatedGame = [...game];
+      updatedGame[index] = player;
+
+      setGame(updatedGame);
+      checkWinner(game);
+      setPlayer(player === "X" ? "O" : "X");
+    }
+  };
+  const Restart = () => {
+    setGame(start);
+  };
+  const Reset = () => {
+    setGame(start);
+    setPlayer("X");
+    setWinner([0, 0]);
+  };
+  ("");
   return (
     <div className={style.wrapper}>
-      <h1>TicTacToe</h1>
-      <div className="">Score: </div>
-      <div className="">
-        Х: {score[0]}, O: {score[1]}
+      <div className={style.info}>
+        <h1 className={style.title}>TicTacToe</h1>
+        <div className="">Score: </div>
+        <div className="">{`X: ${score.X} O: ${score.O}`}</div>
+        <div className="">Turn: {player}</div>
       </div>
-      <table>
-        <tr>
-          <td
+      <div className={style.game}>
+        {start.map((value, index) => (
+          <div
+            key={index}
+            className={`${index % 2 === 0 ? style.grey : ""}`}
             onClick={() => {
-              Turn(0, 0);
+              Turn(index);
             }}
           >
-            {game[0][0]}
-          </td>
-          <td
-            onClick={() => {
-              Turn(0, 1);
-            }}
-          >
-            {game[0][1]}
-          </td>
-          <td
-            onClick={() => {
-              Turn(0, 2);
-            }}
-          >
-            {game[0][2]}
-          </td>
-        </tr>
-        <tr>
-          <td
-            onClick={() => {
-              Turn(1, 0);
-            }}
-          >
-            {game[1][0]}
-          </td>
-          <td
-            onClick={() => {
-              Turn(1, 1);
-            }}
-          >
-            {game[1][1]}
-          </td>
-          <td
-            onClick={() => {
-              Turn(1, 2);
-            }}
-          >
-            {game[1][2]}
-          </td>
-        </tr>
-        <tr className={style.red}>
-          <td
-            onClick={() => {
-              Turn(2, 0);
-            }}
-          >
-            {game[2][0]}
-          </td>
-          <td
-            onClick={() => {
-              Turn(2, 1);
-            }}
-          >
-            {game[2][1]}
-          </td>
-          <td
-            onClick={() => {
-              Turn(2, 2);
-            }}
-          >
-            {game[2][2]}
-          </td>
-        </tr>
-      </table>
-      <button
-        onClick={() => {
-          setGame(start);
-          setPlayer("X");
-        }}
-      >
-        Restart
-      </button>
+            {game[index]}
+          </div>
+        ))}
+      </div>
+
+      <div className={style.control}>
+        <button
+          onClick={() => {
+            Restart();
+          }}
+        >
+          Restart
+        </button>
+        <button
+          onClick={() => {
+            Reset();
+          }}
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
