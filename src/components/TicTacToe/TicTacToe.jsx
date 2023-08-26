@@ -8,6 +8,7 @@ function TicTacToe() {
   const [player, setPlayer] = useState("X");
   const [winner, setWinner] = useState();
 
+  //
   const checkWinner = (game) => {
     const winningCombinations = [
       // Horizontal
@@ -25,39 +26,36 @@ function TicTacToe() {
     for (const combination of winningCombinations) {
       const [a, b, c] = combination;
       if (game[a] && game[a] === game[b] && game[b] === game[c]) {
-        return game[a];
+        Restart();
+        setScore((score) => ({
+          ...score,
+          [winner]: score[winner] + 1,
+        }));
+        setWinner(null);
       }
     }
     return null;
   };
-
-  const Turn = (index) => {
-    if (winner === "X") {
-      setScore([score[0] + 1]);
-      return;
-    }
-    if (winner === "O") {
-      setScore([score[1] + 1]);
-      return;
-    }
-    if (game[index] === "") {
-      const updatedGame = [...game];
-      updatedGame[index] = player;
-
-      setGame(updatedGame);
-      checkWinner(game);
-      setPlayer(player === "X" ? "O" : "X");
-    }
-  };
+  // clearing functions
   const Restart = () => {
     setGame(start);
   };
   const Reset = () => {
     setGame(start);
     setPlayer("X");
-    setWinner([0, 0]);
+    setWinner({ X: 0, O: 0 });
   };
-  ("");
+
+  const Turn = (index) => {
+    if (game[index] === "") {
+      const updatedGame = [...game];
+      updatedGame[index] = player;
+      setGame(updatedGame);
+    }
+
+    setPlayer(player === "X" ? "O" : "X");
+  };
+  checkWinner(game);
   return (
     <div className={style.wrapper}>
       <div className={style.info}>
