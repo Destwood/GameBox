@@ -12,6 +12,11 @@
   margin: 0;
 }
 
+.score {
+  display: flex;
+  justify-content: space-around;
+}
+
 // game
 .game {
   font-family: "Lato", sans-serif;
@@ -19,7 +24,7 @@
   border-radius: 1rem;
   margin: auto;
   overflow: hidden;
-  box-shadow: 0px 0px 13px 6px rgba(255, 255, 255, 1);
+  animation: shadowTransition 10s infinite alternate;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -33,7 +38,8 @@
   }
 
   .grey {
-    background-color: rgba(255, 255, 255, 0.073);
+    background-color: rgba(255, 255, 255, 0.102);
+    opacity: 1;
   }
 }
 
@@ -41,4 +47,75 @@
   padding: 2rem;
   display: flex;
   justify-content: space-around;
+}
+
+.notification {
+  background-color: rgba(255, 255, 255, 0.251);
+  color: #000;
+  position: fixed;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  bottom: 1rem;
+  left: 1rem;
+  width: 8rem;
+  height: 5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-size: 2rem;
+  border-radius: 2rem;
+}
+
+//
+.button {
+  cursor: pointer;
+  position: relative;
+  padding: 10px 24px;
+  font-size: 18px;
+  color: rgb(193, 163, 98);
+  border: 3px solid rgb(193, 163, 98);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: rgb(193, 163, 98);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button:hover::before {
+  scale: 3;
+}
+
+.button:hover {
+  color: #212121;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+}
+
+.button:active {
+  scale: 1;
+}
+@keyframes shadowTransition {
+  0% {
+    box-shadow: 0px 0px 13px 6px rgba(255, 255, 255, 1); // Початковий колір тіні (білий)
+  }
+  50% {
+    box-shadow: 0px 0px 13px 6px rgba(255, 130, 0, 1); // Половина анімації - оранжевий колір
+  }
+  100% {
+    box-shadow: 0px 0px 13px 6px rgba(255, 89, 136, 1); // Заключна точка анімації - рожевий колір
+  }
 }

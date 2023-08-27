@@ -8,6 +8,8 @@ function TicTacToe() {
   const [player, setPlayer] = useState("X");
   const [winner, setWinner] = useState();
 
+  const [showNotification, setShowNotification] = useState(false);
+
   //
   const checkWinner = (game) => {
     const winningCombinations = [
@@ -26,17 +28,21 @@ function TicTacToe() {
     for (const combination of winningCombinations) {
       const [a, b, c] = combination;
       if (game[a] && game[a] === game[b] && game[b] === game[c]) {
+        setShowNotification(true);
         Restart();
         setScore((score) => ({
           ...score,
           [winner]: score[winner] + 1,
         }));
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 2000);
+
         setWinner(null);
       }
     }
     return null;
   };
-  // clearing functions
   const Restart = () => {
     setGame(start);
   };
@@ -60,8 +66,12 @@ function TicTacToe() {
     <div className={style.wrapper}>
       <div className={style.info}>
         <h1 className={style.title}>TicTacToe</h1>
-        <div className="">Score: </div>
-        <div className="">{`X: ${score.X} O: ${score.O}`}</div>
+        <div className={style.scoreTitle}>Score: </div>
+        <div className={style.score}>
+          <div className="">X: {score.X}</div>
+          <div className="">O: {score.O}</div>
+        </div>
+
         <div className="">Turn: {player}</div>
       </div>
       <div className={style.game}>
@@ -80,6 +90,7 @@ function TicTacToe() {
 
       <div className={style.control}>
         <button
+          className={style.button}
           onClick={() => {
             Restart();
           }}
@@ -87,6 +98,7 @@ function TicTacToe() {
           Restart
         </button>
         <button
+          className={style.button}
           onClick={() => {
             Reset();
           }}
@@ -94,6 +106,12 @@ function TicTacToe() {
           Reset
         </button>
       </div>
+      {/*  */}
+      {showNotification && (
+        <div className={style.notification}>
+          {player === "O" ? "X" : "O"} wins
+        </div>
+      )}
     </div>
   );
 }

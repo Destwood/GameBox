@@ -2,7 +2,7 @@ import "./App.scss";
 // import box from "./assets/svg.svg";
 import TicTacToe from "./components/TicTacToe/TicTacToe";
 
-import Cursor from "./components/cursor/Cursor";
+import Cursor from "./components/Cursor/Cursor";
 
 function App() {
   return (
