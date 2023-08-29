@@ -28,17 +28,17 @@ function TicTacToe() {
     for (const combination of winningCombinations) {
       const [a, b, c] = combination;
       if (game[a] && game[a] === game[b] && game[b] === game[c]) {
+        setWinner(player);
         setShowNotification(true);
-        Restart();
-        setScore((score) => ({
-          ...score,
-          [winner]: score[winner] + 1,
+
+        setScore((prevScore) => ({
+          ...prevScore,
+          [game[a]]: prevScore[game[a]] + 1,
         }));
+        Restart();
         setTimeout(() => {
           setShowNotification(false);
         }, 2000);
-
-        setWinner(null);
       }
     }
     return null;
@@ -66,19 +66,24 @@ function TicTacToe() {
     <div className={style.wrapper}>
       <div className={style.info}>
         <h1 className={style.title}>TicTacToe</h1>
-        <div className={style.scoreTitle}>Score: </div>
         <div className={style.score}>
-          <div className="">X: {score.X}</div>
-          <div className="">O: {score.O}</div>
+          <div className={style.scoreX}>X: {score.X}</div>
+          <div className={style.scoreO}>O: {score.O}</div>
         </div>
 
-        <div className="">Turn: {player}</div>
+        <div className={style.player}>
+          <span className={`${player === "X" ? style.red : style.blue}`}>
+            {player}
+          </span>
+        </div>
       </div>
       <div className={style.game}>
         {start.map((value, index) => (
           <div
             key={index}
-            className={`${index % 2 === 0 ? style.grey : ""}`}
+            className={`${index % 2 === 0 ? style.grey : ""} ${
+              game[index] === "X" ? style.red : style.blue
+            }`}
             onClick={() => {
               Turn(index);
             }}
@@ -103,15 +108,11 @@ function TicTacToe() {
             Reset();
           }}
         >
-          Reset
+          Reset score
         </button>
       </div>
       {/*  */}
-      {showNotification && (
-        <div className={style.notification}>
-          {player === "O" ? "X" : "O"} wins
-        </div>
-      )}
+      {showNotification && <div className={style.notification}>{player}</div>}
     </div>
   );
 }

@@ -2,6 +2,10 @@
 $red: #ff5f5f;
 $blue: #5a5aff;
 
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Poppins:ital,wght@0,400;0,700;1,400&display=swap");
+$red: #ff5f5f;
+$blue: #5a5aff;
+
 .wrapper {
   font-family: "Lato", sans-serif;
   display: flex;
@@ -57,27 +61,34 @@ $blue: #5a5aff;
 
 // game
 .game {
-  user-select: none;
-  border-radius: 1rem;
-  margin: auto;
-  overflow: hidden;
-  animation: shadowTransition 10s infinite alternate;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
+}
 
-  > div {
-    font-size: 5rem;
-    width: 7rem;
-    height: 7rem;
-    text-align: center;
-    vertical-align: middle;
-  }
+.choosenItem {
+  min-width: 10rem;
+  width: 100%;
+  text-align: center;
+  font-size: 7rem;
+  background-color: #242424;
+}
 
-  .grey {
-    background-color: rgba(255, 255, 255, 0.102);
-    opacity: 1;
+.options {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.option {
+  border-radius: 50%;
+  padding: 0.4rem;
+  &:hover {
+    transition: 0.5s;
+    background-color: #ccffc1;
   }
+}
+
+.optionImg {
+  height: 3rem;
 }
 
 // control
@@ -154,25 +165,4 @@ $blue: #5a5aff;
 
 .button:active {
   scale: 1;
-}
-
-// additional
-@keyframes shadowTransition {
-  0% {
-    box-shadow: 0px 0px 13px 6px rgba(255, 255, 255, 1);
-  }
-  50% {
-    box-shadow: 0px 0px 13px 6px $red;
-  }
-  100% {
-    box-shadow: 0px 0px 13px 6px $blue;
-  }
-}
-
-.red {
-  color: $red;
-}
-
-.blue {
-  color: $blue;
 }
