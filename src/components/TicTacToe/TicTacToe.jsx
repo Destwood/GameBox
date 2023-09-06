@@ -112,7 +112,9 @@ function TicTacToe() {
         </button>
       </div>
       {/*  */}
-      {showNotification && <div className={style.notification}>{player}</div>}
+      {showNotification && (
+        <div className={style.notification}>{player === "X" ? "O" : "X"}</div>
+      )}
     </div>
   );
 }

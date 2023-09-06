@@ -94,20 +94,11 @@ $blue: #5a5aff;
 }
 
 .notification {
-  background-color: rgba(255, 255, 255, 0.251);
-  color: #000;
-  position: fixed;
-  display: flex;
-  justify-items: center;
-  align-items: center;
+  color: #fff;
+  position: absolute;
   bottom: 1rem;
   left: 1rem;
-  width: 8rem;
-  height: 5rem;
-  padding: 1rem;
-  box-sizing: border-box;
   font-size: 2rem;
-  border-radius: 2rem;
 }
 
 //
