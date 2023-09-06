@@ -1,6 +1,6 @@
 {
   "homepage": "https://destwood.github.io/GameBox",
-  "name": "GameBox",
+  "name": "gamebox",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
