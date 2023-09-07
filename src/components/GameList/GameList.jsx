@@ -26,6 +26,9 @@ function GameList() {
           >
             Rock Paper Scissors
           </button>
+          <button className={style.option} onClick={() => {}}>
+            Coming soon...
+          </button>
         </>
       )}
       {game === 1 && <TicTacToe />}

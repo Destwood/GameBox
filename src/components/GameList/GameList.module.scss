@@ -1,9 +1,13 @@
 .gameList {
+  width: 60%;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
 .option {
+  width: 20rem;
+  height: 20rem;
   background-color: #101412;
   padding: 2rem;
   border-radius: 1rem;
