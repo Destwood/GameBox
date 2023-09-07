@@ -2,10 +2,6 @@
 $red: #ff5f5f;
 $blue: #5a5aff;
 
-@import url("https://fonts.googleapis.com/css2?family=Lato&family=Poppins:ital,wght@0,400;0,700;1,400&display=swap");
-$red: #ff5f5f;
-$blue: #5a5aff;
-
 .wrapper {
   font-family: "Lato", sans-serif;
   display: flex;
@@ -97,6 +93,13 @@ $blue: #5a5aff;
   height: 3rem;
 }
 
+.winner {
+  position: absolute;
+  left: 0;
+  text-align: center;
+  font-size: 1rem;
+}
+
 // control
 .control {
   padding: 2rem;
@@ -105,30 +108,19 @@ $blue: #5a5aff;
   gap: 2rem;
   width: 21rem;
   margin: 0 auto;
-  button {
-    flex: 1;
-  }
 }
 
 .notification {
-  background-color: rgba(255, 255, 255, 0.251);
-  color: #000;
-  position: fixed;
-  display: flex;
-  justify-items: center;
-  align-items: center;
+  color: #fff;
+  position: absolute;
   bottom: 1rem;
   left: 1rem;
-  width: 8rem;
-  height: 5rem;
-  padding: 1rem;
-  box-sizing: border-box;
   font-size: 2rem;
-  border-radius: 2rem;
 }
 
 //
 .button {
+  user-select: none;
   width: fit-content;
   white-space: nowrap;
   user-select: none;

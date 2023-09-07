@@ -1,8 +1,11 @@
 import "./App.scss";
+import React, { useState } from "react";
+
 // import box from "./assets/svg.svg";
 import TicTacToe from "./components/TicTacToe/TicTacToe";
 import RockPaperScissors from "./components/RockPaperScissors/RockPaperScissors";
 
+import GameList from "./components/GameList/GameList";
 import Interface from "./components/Interface/Interface";
 import Cursor from "./components/Cursor/Cursor";
 
@@ -12,7 +15,10 @@ function App() {
       {/* <img className="img" src={box} alt=""></img> */}
       {/* <TicTacToe /> */}
 
-      <RockPaperScissors />
+      <GameList>
+        <TicTacToe />
+        <RockPaperScissors />
+      </GameList>
 
       {/* <Interface /> */}
       <Cursor />
