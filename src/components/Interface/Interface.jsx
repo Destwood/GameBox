@@ -1,9 +1,10 @@
 import React from "react";
+import style from "./Interface.module.scss";
 
 function Interface() {
   return (
-    <div className="">
-      <div className="">asd</div>
+    <div className={style.interface}>
+      <button>back</button>
     </div>
   );
 }

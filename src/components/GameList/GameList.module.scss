@@ -1,0 +1,20 @@
+.gameList {
+  display: flex;
+  gap: 1rem;
+}
+
+.option {
+  background-color: #101412;
+  padding: 2rem;
+  border-radius: 1rem;
+  color: #fff;
+  border: 1px solid #ffffff29;
+}
+
+.option:hover {
+  background-color: radial-gradient(
+    100px circle at 10px 10px,
+    #fff,
+    transperent 40%
+  );
+}
