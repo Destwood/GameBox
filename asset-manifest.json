@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/GameBox/static/css/main.5a941f02.css",
-    "main.js": "/GameBox/static/js/main.207b1ef8.js",
+    "main.css": "/GameBox/static/css/main.92115e3f.css",
+    "main.js": "/GameBox/static/js/main.5a607aaa.js",
     "static/media/rock.svg": "/GameBox/static/media/rock.7e31026312f9964244edd6b23a73980e.svg",
     "static/media/scissors.svg": "/GameBox/static/media/scissors.1e0f5b7c2ac9d86d8bf8cea27aa6dda5.svg",
     "static/media/paper.svg": "/GameBox/static/media/paper.91aac07bb966c856b9e17d4887b19ed2.svg",
     "index.html": "/GameBox/index.html",
-    "main.5a941f02.css.map": "/GameBox/static/css/main.5a941f02.css.map",
-    "main.207b1ef8.js.map": "/GameBox/static/js/main.207b1ef8.js.map"
+    "main.92115e3f.css.map": "/GameBox/static/css/main.92115e3f.css.map",
+    "main.5a607aaa.js.map": "/GameBox/static/js/main.5a607aaa.js.map"
   },
   "entrypoints": [
-    "static/css/main.5a941f02.css",
-    "static/js/main.207b1ef8.js"
+    "static/css/main.92115e3f.css",
+    "static/js/main.5a607aaa.js"
   ]
 }
