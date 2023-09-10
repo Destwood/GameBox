@@ -30,7 +30,7 @@ function Cursor() {
   }, []);
 
   return (
-    <>
+    <div className={style.cursor}>
       <div
         className={style.dot}
         style={{ left: instantPosition.x, top: instantPosition.y }}
@@ -39,7 +39,7 @@ function Cursor() {
         className={style.outline}
         style={{ left: smoothPosition.x, top: smoothPosition.y }}
       ></div>
-    </>
+    </div>
   );
 }
 

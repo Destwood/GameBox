@@ -1,24 +1,72 @@
+:root {
+  --mouse-x: 0;
+  --mouse-y: 0;
+}
+
 .gameList {
-  width: 60%;
+  width: 80vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  z-index: 2;
 }
 
 .option {
-  width: 20rem;
-  height: 20rem;
-  background-color: #101412;
+  flex: 1 1 35vh;
+  position: relative;
+  height: 35vh;
+  max-width: 35vh;
   padding: 2rem;
   border-radius: 1rem;
+
+  background-color: #101412;
   color: #fff;
   border: 1px solid #ffffff29;
+
+  font-size: 2rem;
+  img {
+    width: 70%;
+  }
 }
 
 .option:hover {
-  background-color: radial-gradient(
-    100px circle at 10px 10px,
-    #fff,
-    transperent 40%
+  transition: transform 0.5s ease;
+  transform: rotate(1deg);
+}
+
+.option::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(
+    400px circle at var(--mouse-x) var(--mouse-y),
+    #ffffff2c,
+    transparent 40%
   );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.option:hover::after {
+  opacity: 1;
+}
+
+// animation
+.fadeIn {
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

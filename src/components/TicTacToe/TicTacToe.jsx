@@ -10,7 +10,6 @@ function TicTacToe() {
 
   const [showNotification, setShowNotification] = useState(false);
 
-  //
   const checkWinner = (game) => {
     const winningCombinations = [
       // Horizontal
@@ -43,9 +42,11 @@ function TicTacToe() {
     }
     return null;
   };
+
   const Restart = () => {
     setGame(start);
   };
+
   const Reset = () => {
     setGame(start);
     setPlayer("X");
@@ -57,11 +58,15 @@ function TicTacToe() {
       const updatedGame = [...game];
       updatedGame[index] = player;
       setGame(updatedGame);
+      setPlayer(player === "X" ? "O" : "X");
+      checkWinner(updatedGame);
     }
-
-    setPlayer(player === "X" ? "O" : "X");
   };
-  checkWinner(game);
+
+  const isCellEmpty = (index) => {
+    return game[index] === "";
+  };
+
   return (
     <div className={style.wrapper}>
       <div className={style.info}>
@@ -85,7 +90,9 @@ function TicTacToe() {
               game[index] === "X" ? style.red : style.blue
             }`}
             onClick={() => {
-              Turn(index);
+              if (isCellEmpty(index)) {
+                Turn(index);
+              }
             }}
           >
             {game[index]}
@@ -111,10 +118,10 @@ function TicTacToe() {
           Reset score
         </button>
       </div>
-      {/*  */}
-      {showNotification && (
+
+      {/* {showNotification && (
         <div className={style.notification}>{player === "X" ? "O" : "X"}</div>
-      )}
+      )} */}
     </div>
   );
 }
