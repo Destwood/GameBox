@@ -28,17 +28,29 @@ function TicTacToe() {
       const [a, b, c] = combination;
       if (game[a] && game[a] === game[b] && game[b] === game[c]) {
         setWinner(player);
-        setShowNotification(true);
+        Notification();
 
         setScore((prevScore) => ({
           ...prevScore,
           [game[a]]: prevScore[game[a]] + 1,
         }));
         Restart();
-        setTimeout(() => {
-          setShowNotification(false);
-        }, 2000);
       }
+    }
+    if (
+      game[0] !== "" &&
+      game[1] !== "" &&
+      game[2] !== "" &&
+      game[3] !== "" &&
+      game[4] !== "" &&
+      game[5] !== "" &&
+      game[6] !== "" &&
+      game[7] !== "" &&
+      game[8] !== ""
+    ) {
+      setWinner("tie");
+      Notification();
+      Restart();
     }
     return null;
   };
@@ -51,6 +63,12 @@ function TicTacToe() {
     setGame(start);
     setPlayer("X");
     setWinner({ X: 0, O: 0 });
+  };
+  const Notification = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 2000);
   };
 
   const Turn = (index) => {
@@ -119,9 +137,7 @@ function TicTacToe() {
         </button>
       </div>
 
-      {/* {showNotification && (
-        <div className={style.notification}>{player === "X" ? "O" : "X"}</div>
-      )} */}
+      {showNotification && <div className={style.notification}>{winner}</div>}
     </div>
   );
 }

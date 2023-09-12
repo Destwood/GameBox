@@ -6,17 +6,16 @@ import paper from "./paper.svg";
 import scissors from "./scissors.svg";
 
 function RockPaperScissors() {
-  // Змінні стану для відстеження результатів гри та інших даних
   const [showNotification, setShowNotification] = useState(false);
   const [scores, setScores] = useState({ player: 0, enemy: 0 });
   const [player, setPlayer] = useState();
   const [enemy, setEnemy] = useState();
   const [winner, setWinner] = useState();
   const [final, setFinal] = useState(false);
-  const [gameInProgress, setGameInProgress] = useState(false); // Змінна, щоб блокувати кнопки під час гри
+  const [gameInProgress, setGameInProgress] = useState(false);
+
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  // Функція для відображення повідомлення на короткий час
   const notification = () => {
     setShowNotification(true);
     setTimeout(() => {
@@ -26,7 +25,6 @@ function RockPaperScissors() {
 
   useEffect(() => {
     if (final) {
-      // Перевірка на нічию
       if (player === enemy) {
         setWinner("tie");
         notification();
@@ -35,27 +33,26 @@ function RockPaperScissors() {
         (player === paper && enemy === rock) ||
         (player === scissors && enemy === paper)
       ) {
-        setWinner("player");
+        setWinner("you won!");
         setScores({ ...scores, player: scores.player + 1 });
         notification();
       } else {
-        setWinner("enemy");
+        setWinner("enemy won :(");
         setScores({ ...scores, enemy: scores.enemy + 1 });
         notification();
       }
     }
   }, [player, enemy, final]);
 
-  // Функція для реалізації гри
   const game = async (item) => {
-    setGameInProgress(true); // Встановлюємо, що гра почалася
+    setGameInProgress(true);
     setFinal(false);
     setPlayer(item);
     const option = Math.floor(Math.random() * 3);
 
     for (let j = 1; j <= 5; j++) {
       for (let i = 1; i <= 3; i++) {
-        await sleep((j + i) * 20); // Збільшив затримку для кращого відображення
+        await sleep((j + i) * 20);
         switch (i) {
           case 1:
             setEnemy(rock);
@@ -71,7 +68,7 @@ function RockPaperScissors() {
       }
     }
 
-    await sleep(400); // Збільшив затримку для кращого відображення
+    await sleep(400);
     setFinal(true);
     switch (option) {
       case 0:
@@ -86,7 +83,7 @@ function RockPaperScissors() {
       default:
     }
 
-    setGameInProgress(false); // Встановлюємо, що гра завершилася
+    setGameInProgress(false);
   };
 
   return (
@@ -161,7 +158,7 @@ function RockPaperScissors() {
           Reset score
         </button>
       </div>
-      {showNotification && <div className={style.notification}>{player}</div>}
+      {showNotification && <div className={style.notification}>{winner}</div>}
     </div>
   );
 }
