@@ -35,6 +35,8 @@ function TicTacToe() {
           [game[a]]: prevScore[game[a]] + 1,
         }));
         Restart();
+      } else {
+        setWinner(null);
       }
     }
     if (
@@ -46,7 +48,8 @@ function TicTacToe() {
       game[5] !== "" &&
       game[6] !== "" &&
       game[7] !== "" &&
-      game[8] !== ""
+      game[8] !== "" &&
+      winner !== null
     ) {
       setWinner("tie");
       Notification();
@@ -62,7 +65,7 @@ function TicTacToe() {
   const Reset = () => {
     setGame(start);
     setPlayer("X");
-    setWinner({ X: 0, O: 0 });
+    setScore({ X: 0, O: 0 });
   };
   const Notification = () => {
     setShowNotification(true);
