@@ -49,7 +49,7 @@ function TicTacToe() {
       game[6] !== "" &&
       game[7] !== "" &&
       game[8] !== "" &&
-      winner !== null
+      winner === null
     ) {
       setWinner("tie");
       Notification();
@@ -107,16 +107,16 @@ function TicTacToe() {
         {start.map((value, index) => (
           <div
             key={index}
-            className={`${index % 2 === 0 ? style.grey : ""} ${
+            className={`${style.cell} ${index % 2 === 0 ? style.grey : ""} ${
               game[index] === "X" ? style.red : style.blue
-            }`}
+            } `}
             onClick={() => {
               if (isCellEmpty(index)) {
                 Turn(index);
               }
             }}
           >
-            {game[index]}
+            <p className={style.cellItem}>{game[index]}</p>
           </div>
         ))}
       </div>
