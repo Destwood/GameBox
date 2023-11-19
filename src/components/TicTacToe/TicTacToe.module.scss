@@ -1,190 +1,76 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&family=Poppins:ital,wght@0,400;0,700;1,400&display=swap");
-$red: #ff5f5f;
-$blue: #5a5aff;
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
-.wrapper {
-  font-family: "Lato", sans-serif;
+.container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  align-items: center;
+  gap: 15rem;
 }
 
-// info
-
-.info {
-  user-select: none;
-  width: fit-content;
-  margin: 0 auto;
+.gameBoard {
+  font-family: "Varela Round", sans-serif;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  margin: auto;
 }
 
-.title {
-  font-size: 5rem;
-  margin: 0;
-}
-
-.score {
-  height: 3rem;
+.left,
+.right {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+
+  font: 1em sans-serif;
+  width: 5rem;
+  font-size: 2rem;
+  text-wrap: nowrap;
+  span {
+    font-family: "Varela Round", sans-serif;
+    font-size: 25rem;
+    position: absolute;
+    z-index: -1;
+  }
+}
+.next {
+  animation: colorChange 0.5s;
+  color: #a95023c4;
+}
+.default {
+  color: #ffffff2d;
+}
+.cell {
+  width: 25vh;
+  height: 25vh;
+  background-color: #642100;
   border-radius: 1rem;
-  overflow: hidden;
-  margin-top: 2rem;
-  div {
-    flex: 1 1;
-    text-align: center;
-    color: #ffffff;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-    // center text here
-  }
-  .scoreX {
-    background-color: $red;
-  }
-  .scoreO {
-    background-color: $blue;
-  }
-}
-
-.player {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-top: 1rem;
-}
-
-// game
-.game {
+  font-size: 8rem;
+  transition: background-color 0.5s;
   user-select: none;
-  border-radius: 1rem;
-  margin: auto;
-  overflow: hidden;
-  animation: shadowTransition 10s infinite alternate;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-
-  > div {
-    font-size: 5rem;
-    width: 7rem;
-    height: 7rem;
-    text-align: center;
-    vertical-align: middle;
+  &:hover {
+    background-color: #a95023;
   }
-
-  .grey {
-    background-color: rgba(255, 255, 255, 0.102);
-    opacity: 1;
+  &:active {
+    background-color: #ff753a;
   }
 }
 
-// control
-.control {
-  padding: 2rem;
-  display: flex;
-  justify-content: space-around;
-  gap: 2rem;
-  width: 21rem;
-  margin: 0 auto;
-  button {
-    flex: 1;
+.winner {
+  background-color: #ff753a;
+  &:hover {
+    background-color: #ff753a;
   }
 }
-
-.notification {
-  color: #fff;
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  font-size: 2rem;
-}
-
-//
-.button {
-  width: fit-content;
-  white-space: nowrap;
-  user-select: none;
-  cursor: none;
-  position: relative;
-  padding: 10px 24px;
-  font-size: 18px;
-  color: rgb(193, 163, 98);
-  border: 3px solid rgb(193, 163, 98);
-  border-radius: 34px;
-  background-color: transparent;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-  overflow: hidden;
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 50px;
-  height: 50px;
-  border-radius: inherit;
-  scale: 0;
-  z-index: -1;
-  background-color: rgb(193, 163, 98);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.button:hover::before {
-  scale: 3;
-}
-
-.button:hover {
-  color: #212121;
-  scale: 1.1;
-  box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
-}
-
-.button:active {
-  scale: 1;
-}
-
-// additional
-@keyframes shadowTransition {
+@keyframes colorChange {
   0% {
-    box-shadow: 0px 0px 13px 6px rgba(255, 255, 255, 1);
+    color: #ffffff2d;
   }
   50% {
-    box-shadow: 0px 0px 13px 6px $red;
+    color: #ff753ad2;
   }
   100% {
-    box-shadow: 0px 0px 13px 6px $blue;
-  }
-}
-
-.red {
-  color: $red;
-}
-
-.blue {
-  color: $blue;
-}
-
-.cellItem {
-  margin: 0;
-  padding: 0;
-  transform: scale(1);
-  transition: opacity 0.3s, transform 0.3s;
-  animation: expand 1s ease-in-out;
-}
-
-@keyframes expand {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  25% {
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(1.2);
+    color: #a95023c4;
   }
 }

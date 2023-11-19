@@ -1,7 +1,9 @@
 .App {
   width: 100vw;
   height: 100vh;
-  background: #000;
+  background-image: radial-gradient(#ee875b0f 1px, transparent 1px);
+  background-size: 1rem 1rem;
+  background-color: #000000;
 
   display: flex;
   justify-content: center;

@@ -1,146 +1,87 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./TicTacToe.module.scss";
 
 function TicTacToe() {
-  const start = [``, ``, ``, ``, ``, ``, ``, ``, ``];
-  const [game, setGame] = useState(start);
   const [score, setScore] = useState({ X: 0, O: 0 });
-  const [player, setPlayer] = useState("X");
-  const [winner, setWinner] = useState();
+  const [board, setBoard] = useState(Array(9).fill(""));
+  const [winnerComb, setWinnerComb] = useState([]);
+  const [gameToRestart, setGameToRestart] = useState(false);
+  const [xIsNext, setXIsNext] = useState(true);
 
-  const [showNotification, setShowNotification] = useState(false);
+  const handleClick = (index) => {
+    if (!board.includes("") || gameToRestart) {
+      Reset();
+    } else if (!board[index]) {
+      const newBoard = [...board];
+      newBoard[index] = xIsNext ? "X" : "O";
+      setBoard(newBoard);
+      setXIsNext(!xIsNext);
+      calculateWinner(board);
+    }
+  };
 
-  const checkWinner = (game) => {
-    const winningCombinations = [
-      // Horizontal
+  useEffect(() => {
+    calculateWinner(board);
+  }, [board]);
+
+  const calculateWinner = (squares) => {
+    const lines = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
-      // Vertical
       [0, 3, 6],
       [1, 4, 7],
       [2, 5, 8],
-      // Diagonal
       [0, 4, 8],
       [2, 4, 6],
     ];
-    for (const combination of winningCombinations) {
-      const [a, b, c] = combination;
-      if (game[a] && game[a] === game[b] && game[b] === game[c]) {
-        setWinner(player);
-        Notification();
-
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
+        setWinnerComb([a, b, c]);
+        setGameToRestart(true);
         setScore((prevScore) => ({
           ...prevScore,
-          [game[a]]: prevScore[game[a]] + 1,
+          [squares[a]]: prevScore[squares[a]] + 1,
         }));
-        Restart();
-      } else {
-        setWinner(null);
       }
     }
-    if (
-      game[0] !== "" &&
-      game[1] !== "" &&
-      game[2] !== "" &&
-      game[3] !== "" &&
-      game[4] !== "" &&
-      game[5] !== "" &&
-      game[6] !== "" &&
-      game[7] !== "" &&
-      game[8] !== "" &&
-      winner === null
-    ) {
-      setWinner("tie");
-      Notification();
-      Restart();
-    }
-    return null;
-  };
-
-  const Restart = () => {
-    setGame(start);
   };
 
   const Reset = () => {
-    setGame(start);
-    setPlayer("X");
-    setScore({ X: 0, O: 0 });
-  };
-  const Notification = () => {
-    setShowNotification(true);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 2000);
-  };
-
-  const Turn = (index) => {
-    if (game[index] === "") {
-      const updatedGame = [...game];
-      updatedGame[index] = player;
-      setGame(updatedGame);
-      setPlayer(player === "X" ? "O" : "X");
-      checkWinner(updatedGame);
-    }
-  };
-
-  const isCellEmpty = (index) => {
-    return game[index] === "";
+    const newBoard = Array(9).fill("");
+    setBoard(newBoard);
+    setWinnerComb([]);
+    setGameToRestart(false);
   };
 
   return (
-    <div className={style.wrapper}>
-      <div className={style.info}>
-        <h1 className={style.title}>TicTacToe</h1>
-        <div className={style.score}>
-          <div className={style.scoreX}>X: {score.X}</div>
-          <div className={style.scoreO}>O: {score.O}</div>
-        </div>
-
-        <div className={style.player}>
-          <span className={`${player === "X" ? style.red : style.blue}`}>
-            {player}
-          </span>
-        </div>
+    <div className={style.container}>
+      <div className={style.left}>
+        <span className={`${xIsNext ? style.next : style.default}`}>X</span>
+        Player 1: {score.X}
       </div>
-      <div className={style.game}>
-        {start.map((value, index) => (
+      <div className={style.gameBoard}>
+        {board.map((item, index) => (
           <div
             key={index}
-            className={`${style.cell} ${index % 2 === 0 ? style.grey : ""} ${
-              game[index] === "X" ? style.red : style.blue
-            } `}
-            onClick={() => {
-              if (isCellEmpty(index)) {
-                Turn(index);
-              }
-            }}
+            className={`${style.cell} ${
+              winnerComb.includes(index) ? style.winner : ""
+            }`}
+            onClick={() => handleClick(index)}
           >
-            <p className={style.cellItem}>{game[index]}</p>
+            {item}
           </div>
         ))}
       </div>
-
-      <div className={style.control}>
-        <button
-          className={style.button}
-          onClick={() => {
-            Restart();
-          }}
-        >
-          Restart
-        </button>
-        <button
-          className={style.button}
-          onClick={() => {
-            Reset();
-          }}
-        >
-          Reset score
-        </button>
+      <div className={style.right}>
+        <span className={`${xIsNext ? style.default : style.next}`}>O</span>
+        Player 2: {score.O}
       </div>
-
-      {showNotification && <div className={style.notification}>{winner}</div>}
     </div>
   );
 }

@@ -6,9 +6,13 @@
 }
 
 .btn {
+  user-select: none;
   float: left;
   background-color: inherit;
   color: #fff;
   font-size: 4rem;
   border: none;
+  img {
+    height: 5rem;
+  }
 }
