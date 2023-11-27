@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/GameBox/static/css/main.325bba0c.css",
-    "main.js": "/GameBox/static/js/main.dc2aefdd.js",
+    "main.css": "/GameBox/static/css/main.1aa1f9fa.css",
+    "main.js": "/GameBox/static/js/main.6df0ec19.js",
     "static/media/rock.svg": "/GameBox/static/media/rock.7e31026312f9964244edd6b23a73980e.svg",
     "static/media/scissors.svg": "/GameBox/static/media/scissors.1e0f5b7c2ac9d86d8bf8cea27aa6dda5.svg",
     "static/media/paper.svg": "/GameBox/static/media/paper.91aac07bb966c856b9e17d4887b19ed2.svg",
+    "static/media/back.svg": "/GameBox/static/media/back.4f5c00c7db49c457d7f24f66d5f5e57e.svg",
     "index.html": "/GameBox/index.html",
-    "main.325bba0c.css.map": "/GameBox/static/css/main.325bba0c.css.map",
-    "main.dc2aefdd.js.map": "/GameBox/static/js/main.dc2aefdd.js.map"
+    "main.1aa1f9fa.css.map": "/GameBox/static/css/main.1aa1f9fa.css.map",
+    "main.6df0ec19.js.map": "/GameBox/static/js/main.6df0ec19.js.map"
   },
   "entrypoints": [
-    "static/css/main.325bba0c.css",
-    "static/js/main.dc2aefdd.js"
+    "static/css/main.1aa1f9fa.css",
+    "static/js/main.6df0ec19.js"
   ]
 }
