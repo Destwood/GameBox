@@ -46,8 +46,8 @@ function GameList() {
           <button className={style.option} onClick={() => handleGameSelect(2)}>
             Rock Paper Scissors
           </button>
-          <button className={style.option} onClick={() => {}}>
-            Coming soon...
+          <button className={style.option} onClick={() => handleGameSelect(3)}>
+            2048
           </button>
           <button className={style.option} onClick={() => {}}>
             Coming soon...
