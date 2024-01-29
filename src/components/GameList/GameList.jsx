@@ -33,7 +33,7 @@ function GameList() {
 
   const handleGameSelect = (gameId) => {
     dispatch(selectGame(gameId));
-    setIsGameSelected(true); // Встановлюємо прапорець, що гру вибрано
+    setIsGameSelected(true);
   };
 
   return (
