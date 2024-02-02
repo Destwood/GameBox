@@ -4,6 +4,7 @@ import TicTacToe from "../TicTacToe/TicTacToe";
 import RockPaperScissors from "../RockPaperScissors/RockPaperScissors";
 import { useSelector, useDispatch } from "react-redux";
 import { selectGame } from "../../store/actions";
+import Game2048 from "../Game2048/Game2048";
 
 function GameList() {
   const dispatch = useDispatch();
@@ -40,13 +41,22 @@ function GameList() {
     <div className={style.gameList}>
       {!selectedGame && (
         <>
-          <button className={style.option} onClick={() => handleGameSelect(1)}>
+          <button
+            className={style.option}
+            onClick={() => handleGameSelect("TicTacToe")}
+          >
             TicTacToe
           </button>
-          <button className={style.option} onClick={() => handleGameSelect(2)}>
+          <button
+            className={style.option}
+            onClick={() => handleGameSelect("RockPaperScissors")}
+          >
             Rock Paper Scissors
           </button>
-          <button className={style.option} onClick={() => handleGameSelect(3)}>
+          <button
+            className={style.option}
+            onClick={() => handleGameSelect("Game2048")}
+          >
             2048
           </button>
           <button className={style.option} onClick={() => {}}>
@@ -55,7 +65,7 @@ function GameList() {
         </>
       )}
 
-      {selectedGame === 1 && (
+      {selectedGame === "TicTacToe" && (
         <div
           className={`${style.gameContainer} ${
             isGameSelected ? style.fadeIn : ""
@@ -64,13 +74,22 @@ function GameList() {
           <TicTacToe />
         </div>
       )}
-      {selectedGame === 2 && (
+      {selectedGame === "RockPaperScissors" && (
         <div
           className={`${style.gameContainer} ${
             isGameSelected ? style.fadeIn : ""
           }`}
         >
           <RockPaperScissors />
+        </div>
+      )}
+      {selectedGame === "Game2048" && (
+        <div
+          className={`${style.gameContainer} ${
+            isGameSelected ? style.fadeIn : ""
+          }`}
+        >
+          <Game2048 />
         </div>
       )}
     </div>
