@@ -11,6 +11,7 @@ import Game2048 from "./components/Game2048/Game2048";
 import GameList from "./components/GameList/GameList";
 import Interface from "./components/Interface/Interface";
 import Cursor from "./components/Cursor/Cursor";
+import Snake from "./components/Snake/Snake";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <TicTacToe />
           <RockPaperScissors />
           <Game2048 />
+          <Snake />
         </GameList>
       </Provider>
     </div>

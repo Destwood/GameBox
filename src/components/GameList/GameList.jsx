@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import style from "./GameList.module.scss";
+import { useSelector, useDispatch } from "react-redux";
 import TicTacToe from "../TicTacToe/TicTacToe";
 import RockPaperScissors from "../RockPaperScissors/RockPaperScissors";
-import { useSelector, useDispatch } from "react-redux";
 import { selectGame } from "../../store/actions";
 import Game2048 from "../Game2048/Game2048";
+import Snake from "../Snake/Snake";
 
 function GameList() {
   const dispatch = useDispatch();
@@ -59,8 +60,11 @@ function GameList() {
           >
             2048
           </button>
-          <button className={style.option} onClick={() => {}}>
-            Coming soon...
+          <button
+            className={style.option}
+            onClick={() => handleGameSelect("Snake")}
+          >
+            Snake
           </button>
         </>
       )}
@@ -90,6 +94,15 @@ function GameList() {
           }`}
         >
           <Game2048 />
+        </div>
+      )}
+      {selectedGame === "Snake" && (
+        <div
+          className={`${style.gameContainer} ${
+            isGameSelected ? style.fadeIn : ""
+          }`}
+        >
+          <Snake />
         </div>
       )}
     </div>
