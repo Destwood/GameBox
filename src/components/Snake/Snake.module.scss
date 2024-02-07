@@ -13,7 +13,7 @@
 }
 
 .details {
-  color: #b8c6dc;
+  color: #ffffff;
   font-weight: 500;
   font-size: 1.2rem;
   padding: 20px 27px;
@@ -65,10 +65,22 @@
 
   .control {
     display: flex;
+    gap: 1px;
+    div {
+      flex: 1;
+    }
   }
 
-  .control i {
-    padding: 15px 0;
-    font-size: 1rem;
+  .control button {
+    width: 100%;
+    font-size: 30px;
+    background: #be5f2f;
+    border: none;
+    &:active {
+      background-color: #be5f2f;
+    }
+  }
+  .sideButton {
+    height: 100%;
   }
 }
